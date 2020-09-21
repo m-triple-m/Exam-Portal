@@ -1,0 +1,39 @@
+<div class="container-fluid" *ngIf="paper">
+    <mat-card>
+        <mat-card-content class="card-body">
+            <h2>Question Paper : {{paper.name}}</h2>
+            <h2>Subject : {{paper.subject}}</h2>
+            <p>Descriptions : {{paper.description}}</p>
+            <hr>
+            <h1 class="display-4" *ngIf="responses">
+                {{responses.length}} Response(s)
+            </h1>
+            <h1 class="display-4" *ngIf="!responses">
+                No Responses Yet!!
+            </h1>
+        </mat-card-content>
+    </mat-card>
+    <div class="row mt-5">
+        <div class="col-md-3" *ngIf="responses">
+            <mat-card *ngFor="let response of responses;let i = index" class="mt-1" (click)="selectResponse(i)">
+                <mat-card-content class="card-body">
+                    <h3>Name : {{response.name}}</h3>
+                    <h3>Roll No. : {{response.roll_no}}</h3>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md">
+            <mat-card *ngIf="selectedResponse">
+                <mat-card-content class="card-body">
+                    <div class="ans mt-2" *ngFor="let answer of selectedResponse.solved_paper.QandA">
+                        <h3>{{answer.ques}}</h3>
+                        <h3>Answer : {{answer.answer}}</h3>
+
+                        <hr>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+

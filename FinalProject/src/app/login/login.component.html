@@ -1,0 +1,23 @@
+<div class="login mt-5">
+	<h2 class="active"> Login Form </h2>
+  
+	<form [formGroup]="loginform" (ngSubmit)="submitForm(loginform.value)">
+	 
+	  <input type="text" class="text" name="username" formControlName="username">
+	   <span class="labels mt-3">username</span>
+
+	  <input type="password" class="text" name="password" formControlName="password">
+	  <span class="labels mt-3">password</span>
+	  
+	  <button class="button mt-3">Login</button>
+	  <hr>
+      <a class="btn-solid-lg page-scroll text-dark mt-3" href="../signup">Register</a>
+  
+	  
+  
+	  
+	</form>
+  
+  </div>
+
+ 

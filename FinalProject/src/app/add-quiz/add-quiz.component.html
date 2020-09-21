@@ -1,0 +1,50 @@
+<mat-card class="strip">
+   <mat-card-content class="card-body">
+       <form [formGroup]="quizform">
+           <mat-form-field class="stretch">
+               <mat-label>Title</mat-label>
+               <input matInput formControlName="title">
+           </mat-form-field>
+
+           <mat-form-field class="stretch">
+               <mat-label>Subject</mat-label>
+               <input matInput formControlName="subject">
+           </mat-form-field>
+
+           <mat-form-field class="stretch">
+               <mat-label>Description</mat-label>
+               <input matInput formControlName="desc">
+           </mat-form-field>
+       </form>
+   </mat-card-content>
+</mat-card>
+<h4 class="mt-5 h2">Questions</h4>
+<hr>
+
+<mat-card class="mt-2 strip" *ngFor="let question of allquestions;let i=index">
+   <mat-card-content class="card-body">
+       <mat-form-field class="stretch">
+           <mat-label>Question</mat-label>
+           <input matInput [(ngModel)]="question.ques">
+       </mat-form-field>
+
+       <mat-form-field  appearance="outline">
+           <mat-label>Question Type</mat-label>
+           <mat-select [(ngModel)]="question.type">
+               <mat-option [value]="'short'">Short Answer</mat-option>
+               <mat-option [value]="'optional'">Optional</mat-option>
+           </mat-select>
+       </mat-form-field>
+       <div *ngIf="question.type == 'optional'">
+        <mat-form-field *ngFor="let option of question.options;let ind = index">
+            <mat-label>Option {{ind+1}}</mat-label>
+            <input matInput [(ngModel)]="allquestions[i].options[ind]">
+        </mat-form-field>
+
+        <button class="btn btn-primary" (click)="addOptions(i)">Add option</button>
+    </div>
+   </mat-card-content>
+</mat-card>
+
+<button class="btn btn-danger" style="height: 50px;min-width: 250px;box-shadow: 10px 10px 5px grey;" (click)="addquestion()"><b>Add Questions</b></button>
+<button class="mt-5 btn btn-primary" style="height: 50px;min-width: 250px;box-shadow: 10px 10px 5px grey;" (click)="finishCreating()"><b>CREATE</b></button>

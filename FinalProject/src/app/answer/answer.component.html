@@ -1,0 +1,34 @@
+<div class="container" *ngIf="paperToAnswer">
+    <mat-card>
+        <mat-card-content class="card-body">
+            <h3>Title : {{paperToAnswer.title}}</h3>
+            <h3>Subject : {{paperToAnswer.subject}}</h3>
+            <h3>Description : {{paperToAnswer.desc}}</h3>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mt-5">
+        <mat-card-content class="card-body">
+            <div class="question" *ngFor="let question of paperToAnswer.QandA;let i=index">
+                <h3>{{question.ques}}</h3>
+
+                <mat-form-field *ngIf="question.type == 'short'">
+                    <textarea matInput [(ngModel)]="paperToAnswer.QandA[i].answer"></textarea>
+                </mat-form-field>
+
+                <label id="example-radio-group-label">Pick your favorite Season</label>
+                <mat-radio-group *ngIf="question.type == 'optional'"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="paperToAnswer.questions[i].answer">
+                    <mat-radio-button class="example-radio-button" *ngFor="let option of paperToAnswer.QandA[i].options" [value]="option">
+                        {{option}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <button class="btn btn-dark" (click)="submitAnswer()">Submit Answer</button>
+            
+        </mat-card-content>
+    </mat-card>
+</div>
