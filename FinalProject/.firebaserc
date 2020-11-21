@@ -1,5 +1,15 @@
 {
   "projects": {
-    "default": "angular-project-b88e9"
+    "default": "angular-project-b88e9",
+    "y": "new-pro-a6525"
+  },
+  "targets": {
+    "new-pro-a6525": {
+      "hosting": {
+        "FinalProject": [
+          "new-pro-a6525"
+        ]
+      }
+    }
   }
 }
